@@ -19,19 +19,19 @@ public class InventoryRepository {
      * @return <class>InventoryItem</class> ... essentially the entity
      */
     public InventoryItem retrieveItemById(Long inventoryItemId) {
-        return JDBCUtil.execute((conn) -> {
-            PreparedStatement inventoryItemStatement = conn.prepareStatement(RETRIEVE_INVENTORY_ITEM_BY_NAME);
+        return JDBCUtil.execute((connection) -> {
+            PreparedStatement inventoryItemStatement = connection.prepareStatement(RETRIEVE_INVENTORY_ITEM_BY_NAME);
             inventoryItemStatement.setLong(1, inventoryItemId);
-            ResultSet rs = inventoryItemStatement.executeQuery();
+            ResultSet resultSet = inventoryItemStatement.executeQuery();
 
             LOGGER.info("Retrieved record for inventory item ID: {}", inventoryItemId);
 
             final InventoryItem inventoryItem = new InventoryItem();
-            if (rs.next()) {
-                inventoryItem.setInventoryItemId(rs.getLong("inventory_item_id"));
-                inventoryItem.setInventoryItemName(rs.getString("inventory_item_name"));
-                inventoryItem.setInventoryItemCount(rs.getInt("inventory_item_count"));
-                inventoryItem.setInventoryItemLastUpdatedDate(rs.getDate("inventory_item_last_updated_date"));
+            if (resultSet.next()) {
+                inventoryItem.setInventoryItemId(resultSet.getLong("inventory_item_id"));
+                inventoryItem.setInventoryItemName(resultSet.getString("inventory_item_name"));
+                inventoryItem.setInventoryItemCount(resultSet.getInt("inventory_item_count"));
+                inventoryItem.setInventoryItemLastUpdatedDate(resultSet.getDate("inventory_item_last_updated_date"));
             }
             return inventoryItem;
         });
