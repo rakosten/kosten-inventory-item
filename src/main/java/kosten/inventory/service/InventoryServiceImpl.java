@@ -16,7 +16,6 @@ public class InventoryServiceImpl implements InventoryService {
     public InventoryDto getInventoryItemsById(Long inventoryItemId) {
         InventoryItem inventoryItem = inventoryRepository.retrieveItemById(inventoryItemId);
 
-
         return convertItem(inventoryItem);
     }
 
