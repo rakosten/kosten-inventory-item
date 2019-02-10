@@ -1,0 +1,49 @@
+
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven {
+        url = 'http://repo.maven.apache.org/maven2'
+    }
+}
+
+dependencies {
+    compileOnly ('com.amazonaws:aws-lambda-java-core:1.1.0',
+            'mysql:mysql-connector-java:5.1.24',
+            'com.zaxxer:HikariCP:2.6.1',
+            'org.slf4j:slf4j-simple:1.7.22'
+    )
+    testCompile (
+            'junit:junit:4.12',
+            'org.mockito:mockito-core:2.18.0',
+            'org.powermock:powermock-core:2.0.0-beta.5',
+            'org.powermock:powermock-module-junit4:2.0.0-beta.5',
+            'org.powermock:powermock-api-mockito2:2.0.0-beta.5',
+            'com.github.stefanbirkner:system-rules:1.19.0',
+            'com.amazonaws:aws-lambda-java-core:1.1.0',
+            'mysql:mysql-connector-java:5.1.24',
+            'com.zaxxer:HikariCP:2.6.1',
+            'com.h2database:h2:1.4.194',
+            'org.slf4j:slf4j-simple:1.7.22'
+    )
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.compile
+    }
+}
+
+build.dependsOn buildZip
+
+group = 'kosten.inventory'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
