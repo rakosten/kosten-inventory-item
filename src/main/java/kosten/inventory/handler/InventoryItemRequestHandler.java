@@ -11,9 +11,13 @@ import org.slf4j.LoggerFactory;
 
 public class InventoryItemRequestHandler implements RequestHandler<Request, InventoryDto> {
 
-    private InventoryService inventoryService = new InventoryServiceImpl();
+    private InventoryService inventoryService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryItemRequestHandler.class);
+
+    public InventoryItemRequestHandler() {
+        this.inventoryService = new InventoryServiceImpl();
+    }
     /**
      * Handles request to retrieve inventory item based on an item id
      *

@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 
 public class InventoryRepository {
 
-    private static final String RETRIEVE_INVENTORY_ITEM_BY_NAME = "SELECT * FROM inventory_item where inventory_item_id = ?";
+    private static final String RETRIEVE_INVENTORY_ITEM_BY_ID = "SELECT * FROM inventory_item where inventory_item_id = ?";
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryRepository.class);
 
     /**
@@ -20,7 +20,7 @@ public class InventoryRepository {
      */
     public InventoryItem retrieveItemById(Long inventoryItemId) {
         return JDBCUtil.execute((connection) -> {
-            PreparedStatement inventoryItemStatement = connection.prepareStatement(RETRIEVE_INVENTORY_ITEM_BY_NAME);
+            PreparedStatement inventoryItemStatement = connection.prepareStatement(RETRIEVE_INVENTORY_ITEM_BY_ID);
             inventoryItemStatement.setLong(1, inventoryItemId);
             ResultSet resultSet = inventoryItemStatement.executeQuery();
 

@@ -9,8 +9,12 @@ import org.slf4j.LoggerFactory;
 
 public class InventoryServiceImpl implements InventoryService {
 
-    private InventoryRepository inventoryRepository = new InventoryRepository();
+    private InventoryRepository inventoryRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryServiceImpl.class);
+
+    public InventoryServiceImpl() {
+        this.inventoryRepository = new InventoryRepository();
+    }
 
     @Override
     public InventoryDto getInventoryItemsById(Long inventoryItemId) {
