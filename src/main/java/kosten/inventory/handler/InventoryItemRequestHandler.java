@@ -18,6 +18,7 @@ public class InventoryItemRequestHandler implements RequestHandler<Request, Inve
     public InventoryItemRequestHandler() {
         this.inventoryService = new InventoryServiceImpl();
     }
+
     /**
      * Handles request to retrieve inventory item based on an item id
      *
