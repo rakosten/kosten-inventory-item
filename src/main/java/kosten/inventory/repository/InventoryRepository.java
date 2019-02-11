@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class InventoryRepository {
 
     private static final String RETRIEVE_INVENTORY_ITEM_BY_ID = "SELECT * FROM inventory_item where inventory_item_id = ?";
@@ -18,6 +19,7 @@ public class InventoryRepository {
      * @param inventoryItemId ... the id of the inventory item
      * @return <class>InventoryItem</class> ... essentially the entity
      */
+
     public InventoryItem retrieveItemById(Long inventoryItemId) {
         return JDBCUtil.execute((connection) -> {
             PreparedStatement inventoryItemStatement = connection.prepareStatement(RETRIEVE_INVENTORY_ITEM_BY_ID);

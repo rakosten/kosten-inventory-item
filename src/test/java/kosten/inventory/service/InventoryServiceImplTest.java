@@ -23,8 +23,7 @@ public class InventoryServiceImplTest {
     @Before
     public void setUp() {
         inventoryRepository = mock(InventoryRepository.class);
-        inventoryService = spy(new InventoryServiceImpl());
-        ((InventoryServiceImpl) inventoryService).setInventoryRepository(inventoryRepository);
+        inventoryService = spy(new InventoryServiceImpl(inventoryRepository));
     }
 
     @Test

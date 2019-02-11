@@ -16,8 +16,7 @@ public class InventoryRepositoryTest {
     private InventoryRepository inventoryRepository;
 
     @Rule
-    public final EnvironmentVariables environmentVariables
-            = new EnvironmentVariables();
+    public final EnvironmentVariables environmentVariables = new EnvironmentVariables();
 
     @Before
     public void setUp() {

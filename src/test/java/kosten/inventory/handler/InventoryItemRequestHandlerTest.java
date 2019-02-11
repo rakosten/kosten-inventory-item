@@ -24,8 +24,7 @@ public class InventoryItemRequestHandlerTest {
     @Before
     public void setUp() {
         inventoryService = mock(InventoryServiceImpl.class);
-        inventoryItemRequestHandler = spy(new InventoryItemRequestHandler());
-        inventoryItemRequestHandler.setInventoryService(inventoryService);
+        inventoryItemRequestHandler = spy(new InventoryItemRequestHandler(inventoryService));
     }
 
     @Test

@@ -1,10 +1,16 @@
 package kosten.inventory.service;
 
+import dagger.Module;
+import dagger.Provides;
+
 import kosten.inventory.dto.InventoryDto;
 import kosten.inventory.repository.InventoryRepository;
 import kosten.inventory.repository.entity.InventoryItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+
 
 
 public class InventoryServiceImpl implements InventoryService {
@@ -12,11 +18,13 @@ public class InventoryServiceImpl implements InventoryService {
     private InventoryRepository inventoryRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryServiceImpl.class);
 
-    public InventoryServiceImpl() {
-        this.inventoryRepository = new InventoryRepository();
+    @Inject
+    public InventoryServiceImpl(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
     }
 
     @Override
+    @Provides
     public InventoryDto getInventoryItemsById(Long inventoryItemId) {
         InventoryItem inventoryItem = inventoryRepository.retrieveItemById(inventoryItemId);
         
@@ -34,7 +42,4 @@ public class InventoryServiceImpl implements InventoryService {
         return dto;
     }
 
-    protected void setInventoryRepository(InventoryRepository inventoryRepository) {
-        this.inventoryRepository = inventoryRepository;
-    }
 }
